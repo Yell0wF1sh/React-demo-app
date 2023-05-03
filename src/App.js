@@ -5,6 +5,7 @@ import Transaction from "./Transaction";
 import About from './About';
 import NavBar from './NavBar';
 import Main from './Main';
+import Summary from "./Summary";
 
 export default function App() {
   let [page, setPage] = useState('Main')
@@ -16,6 +17,8 @@ export default function App() {
     theApp = <About />
   } else if (page == "Main") {
     theApp = <Main />
+  } else if (page == 'Summary') {
+    theApp = <Summary choice="category" />
   }
   return (
     <>

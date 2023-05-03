@@ -45,8 +45,6 @@ export default function Transaction() {
         setNumKeys(numKeys - 1)
     }
 
-
-
     useEffect(() => {
         // storing items if items changes value
         localStorage.setItem("items", JSON.stringify(items));
@@ -65,7 +63,7 @@ export default function Transaction() {
             {msg}
             <table class="table table-bordered table-striped">
                 <tbody>
-                    <tr>
+                    <tr className="bg-info">
                         <th>description</th>
                         <th>amount</th>
                         <th>category</th>
