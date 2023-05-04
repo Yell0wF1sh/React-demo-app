@@ -5,16 +5,16 @@ function getItemsFromLocalStorage() {
     // getting stored value
     const saved = localStorage.getItem("items");
     const initialValue = JSON.parse(saved) || [];
-    // relabel the keys from 0 to length-1
+    // relabel the itemIds from 0 to length-1
     for (let i = 0; i < initialValue.length; i++) {
-        initialValue[i]['key'] = i
+        initialValue[i]['itemId'] = i
     }
     return initialValue || [];
 }
 
 export default function Transaction() {
     let [items, setItems] = useState(getItemsFromLocalStorage);
-    let [numKeys, setNumKeys] = useState(() => items.length)
+    let [numId, setNumId] = useState(() => items.length)
 
     function add_item() {
         // add an item to the todolist
@@ -23,7 +23,7 @@ export default function Transaction() {
         const category = document.getElementById("category").value;
         const date = document.getElementById("date").value;
         let newItem = {
-            key: numKeys,
+            itemId: numId,
             desc,
             amount,
             category,
@@ -33,15 +33,15 @@ export default function Transaction() {
         document.getElementById("amount").value = ""
         document.getElementById("category").value = ""
         document.getElementById("date").value = ""
-        setNumKeys(numKeys + 1)
+        setNumId(numId + 1)
         setItems([newItem, ...items]); // using the spread operator ...
     }
 
-    function deleteItem(key) {
-        console.log("Deleting item with key " + key)
-        const newItems = items.filter((x) => x['key'] !== key)
+    function deleteItem(itemId) {
+        console.log("Deleting item with itemId " + itemId)
+        const newItems = items.filter((x) => x['itemId'] !== itemId)
         setItems(newItems)
-        setNumKeys(numKeys - 1)
+        setNumId(numId - 1)
     }
 
     useEffect(() => {
@@ -62,6 +62,7 @@ export default function Transaction() {
             <table class="table table-bordered table-striped">
                 <thead class="bg-info">
                     <tr>
+                        <th scope="col">item ID</th>
                         <th scope="col">description</th>
                         <th scope="col">amount</th>
                         <th scope="col">category</th>
@@ -72,11 +73,12 @@ export default function Transaction() {
                 <tbody>
                     {items.map((item) => (
                         <tr>
+                            <td>{item["itemId"]}</td>
                             <td>{item["desc"]}</td>
                             <td>{item["amount"]}</td>
                             <td>{item["category"]}</td>
                             <td>{item["date"]}</td>
-                            <td><button onClick={() => deleteItem(item["key"])}><i class="bi bi-trash"></i></button></td>
+                            <td><button onClick={() => deleteItem(item["itemId"])}><i class="bi bi-trash"></i></button></td>
                         </tr>
                     ))}
                 </tbody>
