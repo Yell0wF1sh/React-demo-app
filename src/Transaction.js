@@ -15,7 +15,6 @@ function getItemsFromLocalStorage() {
 export default function Transaction() {
     let [items, setItems] = useState(getItemsFromLocalStorage);
     let [numKeys, setNumKeys] = useState(() => items.length)
-    let [msg, setMsg] = useState('none');
 
     function add_item() {
         // add an item to the todolist
@@ -60,16 +59,17 @@ export default function Transaction() {
     return (
         <div className="App container">
             <h1 className="bg-warning text-center p-2">Transaction</h1>
-            {msg}
             <table class="table table-bordered table-striped">
-                <tbody>
-                    <tr className="bg-info">
-                        <th>description</th>
-                        <th>amount</th>
-                        <th>category</th>
-                        <th>date</th>
-                        <th>delete</th>
+                <thead class="bg-info">
+                    <tr>
+                        <th scope="col">description</th>
+                        <th scope="col">amount</th>
+                        <th scope="col">category</th>
+                        <th scope="col">date</th>
+                        <th scope="col">delete</th>
                     </tr>
+                </thead>
+                <tbody>
                     {items.map((item) => (
                         <tr>
                             <td>{item["desc"]}</td>
@@ -81,20 +81,23 @@ export default function Transaction() {
                     ))}
                 </tbody>
             </table>
+            <a class="btn btn-primary mb-3" data-bs-toggle="collapse" href="#collapseAddItem" role="button" aria-expanded="false" aria-controls="collapseAddItem">
+                add new transaction item
+            </a>
+            <div class="collapse" id="collapseAddItem">
+                <div class="card card-body" style={{ width: "30vw", textAlign: "center" }}>
+                    <input type="text" onKeyDown={handleKeyDown} id="desc" placeholder="description" class="form-control" /><br />
+                    <input type="text" onKeyDown={handleKeyDown} id="amount" placeholder="amount" class="form-control" /><br />
+                    <input type="text" onKeyDown={handleKeyDown} id="category" placeholder="category" class="form-control" /><br />
+                    <input type="text" onKeyDown={handleKeyDown} id="date" placeholder="date" class="form-control" /><br />
+                    <button type="button" class="btn btn-primary" onClick={() => add_item()}>add Todo</button>
+                </div>
+            </div>
 
-
-            <h2> add new todo item </h2>
-            <input type="text" onKeyDown={handleKeyDown} id="desc" placeholder="description" /><br />
-            <input type="text" onKeyDown={handleKeyDown} id="amount" placeholder="amount" /><br />
-            <input type="text" onKeyDown={handleKeyDown} id="category" placeholder="category" /><br />
-            <input type="text" onKeyDown={handleKeyDown} id="date" placeholder="date" /><br />
-            <button onClick={() => add_item()}>add Todo</button>
-
-            <h2> DEBUGGING: list of items in JSON </h2>
+            {/* <h2> DEBUGGING: list of items in JSON </h2>
             <pre>
                 {JSON.stringify(items, null, 5)}
-            </pre>
+            </pre> */}
         </div>
-
     );
 }

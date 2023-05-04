@@ -19,12 +19,12 @@ export default function NavBar({ setPage }) {
                                 class="nav-link" href="#">Transaction</a>
                         </li>
                         <li class="nav-item">
-                            <a onClick={() => setPage('About')}
-                                class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
                             <a onClick={() => setPage('Summary')}
                                 class="nav-link" href="#">Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a onClick={() => setPage('About')}
+                                class="nav-link" href="#">About</a>
                         </li>
                     </ul>
                 </div>
