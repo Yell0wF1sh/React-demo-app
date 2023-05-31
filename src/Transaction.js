@@ -95,11 +95,6 @@ export default function Transaction() {
                     <button type="button" class="btn btn-primary" onClick={() => add_item()}>add Todo</button>
                 </div>
             </div>
-
-            {/* <h2> DEBUGGING: list of items in JSON </h2>
-            <pre>
-                {JSON.stringify(items, null, 5)}
-            </pre> */}
         </div>
     );
 }

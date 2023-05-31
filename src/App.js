@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./styles.css";
-import ToDo, { testing } from './ToDo';
 import Transaction from "./Transaction";
 import About from './About';
 import NavBar from './NavBar';
